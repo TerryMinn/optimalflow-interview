@@ -9,9 +9,10 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
-    "baseUrl": ".",
+    "baseUrl": "./src",
+    "typeRoots": ["./src/types", "./node_modules/@types"],
     "paths": {
-      "*": ["node_modules/*"]
+      "@/*": ["*"]
     }
   },
   "include": ["src/**/*"],
