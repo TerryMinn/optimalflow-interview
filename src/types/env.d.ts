@@ -9,5 +9,7 @@ declare namespace NodeJS {
     SALT_ROUNDS: string;
 
     JWT_SECRET: string;
+
+    ORIGIN: string;
   }
 }

@@ -3,6 +3,7 @@ import {
   getUserByEmail,
   createUser,
   getUserById,
+  getUserTransferData,
 } from "@/services/user.service";
 import { generateJWToken } from "@/util";
 import { HttpError } from "@/util/error-handler";
@@ -15,16 +16,19 @@ export const getAllUser = async (
   next: NextFunction
 ) => {
   try {
-    const users = await getUsers();
-
-    if (!users || users.length === 0) {
-      throw new Error("No users found");
-    }
+    const { count, users } = await getUsers(req.query);
 
     res.status(200).json({
       success: true,
       message: "Success",
       data: users,
+      meta: {
+        total: count,
+        page: Number(req.query.page) || 1,
+        limit: Number(req.query.limit) || 10,
+        sort_by: req.query.sort_by || "createdAt",
+        sort_dir: req.query.sort_dir || "desc",
+      },
     });
   } catch (error) {
     next(error);
@@ -103,5 +107,33 @@ export const getUser = async (
     });
   } catch (error) {
     next(error);
+  }
+};
+
+export const getTransferDataByUserId = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { count, transfers } = await getUserTransferData(
+      req.params.id,
+      req.query
+    );
+
+    res.status(200).json({
+      success: true,
+      message: "Success",
+      data: transfers,
+      meta: {
+        total: count,
+        page: Number(req.query.page) || 1,
+        limit: Number(req.query.limit) || 10,
+        sort_by: req.query.sort_by || "createdAt",
+        sort_dir: req.query.sort_dir || "desc",
+      },
+    });
+  } catch (err) {
+    next(err);
   }
 };

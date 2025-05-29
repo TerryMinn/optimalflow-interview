@@ -1,4 +1,5 @@
 import { PrismaClient } from "@/generated/prisma/client";
+import { BasePaginationQuery } from "@/types";
 import { HttpError } from "@/util/error-handler";
 
 const prisma = new PrismaClient();
@@ -50,4 +51,44 @@ export const transferCreate = async (
       },
     });
   });
+};
+
+export const allTransfers = async ({
+  limit = 10,
+  page = 1,
+  sort_by = "createdAt",
+  sort_dir = "desc",
+}: BasePaginationQuery) => {
+  const skip = (page - 1) * limit || 0;
+
+  const [transfers, count] = await Promise.all([
+    prisma.transfer.findMany({
+      take: Number(limit),
+      skip: skip,
+      orderBy: {
+        [sort_by as string]: sort_dir,
+      },
+      include: {
+        fromUser: {
+          select: {
+            id: true,
+            email: true,
+            balance: true,
+            name: true,
+          },
+        },
+        toUser: {
+          select: {
+            id: true,
+            email: true,
+            balance: true,
+            name: true,
+          },
+        },
+      },
+    }),
+    prisma.transfer.count(),
+  ]);
+
+  return { transfers, count };
 };
