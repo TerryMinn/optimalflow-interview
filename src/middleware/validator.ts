@@ -8,8 +8,6 @@ export const validateBody = <T extends Record<string, any>>(
   return async (req: Request, res: Response, next: NextFunction) => {
     const validation = schema.safeParse(req.body);
 
-    console.log(validation.error);
-
     if (!validation.success) {
       next(new HttpError(400, validation.error.issues[0].message));
       return;

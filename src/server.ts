@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import express, { NextFunction, Request, Response } from "express";
-import userRouter from "./routes/user.route";
+import { TransferRouter, UserRouter } from "./routes";
 import { HttpError } from "./util/error-handler";
 const app = express();
 dotenv.config();
@@ -8,7 +8,9 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.use("/api/v1", userRouter);
+// Routes
+app.use("/api/v1", UserRouter);
+app.use("/api/v1", TransferRouter);
 
 // fallback route for any other route that is not defined
 app.get(/(.*)/, (req, res) => {
