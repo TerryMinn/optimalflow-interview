@@ -1,4 +1,9 @@
-import { getUsers, getUserByEmail, createUser } from "@/services/user.service";
+import {
+  getUsers,
+  getUserByEmail,
+  createUser,
+  getUserById,
+} from "@/services/user.service";
 import { generateJWToken } from "@/util";
 import { HttpError } from "@/util/error-handler";
 import { compareSync } from "bcryptjs";
@@ -80,8 +85,23 @@ export const LoginUser = async (
   }
 };
 
-export const getUserById = (
+export const getUser = async (
   req: Request,
   res: Response,
   next: NextFunction
-) => {};
+) => {
+  try {
+    const user = await getUserById(req.params.id);
+
+    if (!user) {
+      throw new HttpError(400, "User not found");
+    }
+    res.status(200).json({
+      success: true,
+      message: "Success",
+      data: user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
