@@ -1,0 +1,21 @@
+{
+  "name": "optimalflow",
+  "version": "1.0.0",
+  "description": "interview task for optimalflow",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TerryMinn/optimalflow-interview.git"
+  },
+  "keywords": [
+    "optimalflow"
+  ],
+  "author": "terryminn",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.15.24",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
