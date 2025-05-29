@@ -7,7 +7,7 @@ import {
 } from "@/controllers/user.controller";
 import { validateBody } from "@/middleware/validator";
 import authGuard from "@/middleware/auth-guard";
-import { loginSchema, userSchema, UserType } from "@/validation/user.schema";
+import { loginSchema, userSchema } from "@/validation/user.schema";
 
 const router = Router();
 

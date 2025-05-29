@@ -7,7 +7,7 @@ export const hashPassword = (password: string) => {
 };
 
 export const generateJWToken = async (id: string) => {
-  return await jwt.sign({ id }, process.env.JWT_SECRET as string, {
-    expiresIn: "1h",
+  return jwt.sign({ id }, process.env.JWT_SECRET as string, {
+    expiresIn: "1d",
   });
 };
