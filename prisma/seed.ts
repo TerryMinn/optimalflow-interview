@@ -4,21 +4,22 @@ import { hashPassword } from "../src/util/index";
 const prisma = new PrismaClient();
 
 async function seed() {
-  const finder = await prisma.user.findUnique({
-    where: {
-      email: process.env.SEED_EMAIL!,
-    },
-  });
-  if (finder) {
-    throw new Error("User already exists");
-  }
-  await prisma.user.create({
-    data: {
+  const usersData = [
+    {
       email: process.env.SEED_EMAIL!,
       password: hashPassword(process.env.SEED_PASSWORD!),
       name: process.env.SEED_NAME!,
     },
-  });
+    {
+      email: process.env.SEED_EMAIL_S!,
+      password: hashPassword(process.env.SEED_PASSWORD_S!),
+      name: process.env.SEED_NAME_S!,
+    },
+  ];
+
+  await prisma.transfer.deleteMany();
+  await prisma.user.deleteMany();
+  await prisma.user.createMany({ data: usersData });
 }
 
 seed()

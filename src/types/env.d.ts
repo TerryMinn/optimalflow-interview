@@ -15,5 +15,8 @@ declare namespace NodeJS {
     SEED_EMAIL: string;
     SEED_PASSWORD: string;
     SEED_NAME: string;
+    SEED_EMAIL_S: string;
+    SEED_PASSWORD_S: string;
+    SEED_NAME_S: string;
   }
 }

@@ -81,7 +81,11 @@ export const LoginUser = async (
     res.status(200).json({
       success: true,
       message: "User logged in successfully",
-      data: userFinder,
+      data: {
+        name: userFinder.name,
+        email: userFinder.email,
+        id: userFinder.id,
+      },
       token,
     });
   } catch (error) {
