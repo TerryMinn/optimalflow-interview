@@ -1,0 +1,336 @@
+{
+	"info": {
+		"_postman_id": "ed07904b-7df6-4b66-aeaf-03b331782f27",
+		"name": "App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27251466"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "users lists",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkZjViYzMzLTJmN2QtNDAwYy04ZGYzLWNlOWViMzhiODNkNyIsImlhdCI6MTc0ODU1OTAxOSwiZXhwIjoxNzQ4NjQ1NDE5fQ.QNjkGOF_qMbvtkawREJcswSZ7Iyp5TWgZ2I7Vb5H--w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/users",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "shin",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "sort_dir",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Nzc1MDQwLTIzYjItNGNiYy05OTMzLWQxMGE5MTFiM2Q2MiIsImlhdCI6MTc0ODUzMzkyMCwiZXhwIjoxNzQ4NTMzOTMwfQ.BZ1KHyUdt8s2-6tyOHEnWwYxQ5owiwvAFRQQS1Epp9o",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/users/65775040-23b2-4cbc-9933-d10a911b3d62",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"users",
+								"65775040-23b2-4cbc-9933-d10a911b3d62"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transfer data by user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/users/65775040-23b2-4cbc-9933-d10a911b3d62/transfer",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"users",
+								"65775040-23b2-4cbc-9933-d10a911b3d62",
+								"transfer"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "shin",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "sort_dir",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkZjViYzMzLTJmN2QtNDAwYy04ZGYzLWNlOWViMzhiODNkNyIsImlhdCI6MTc0ODU1OTAxOSwiZXhwIjoxNzQ4NjQ1NDE5fQ.QNjkGOF_qMbvtkawREJcswSZ7Iyp5TWgZ2I7Vb5H--w",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Transfer",
+			"item": [
+				{
+					"name": "transfer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkZjViYzMzLTJmN2QtNDAwYy04ZGYzLWNlOWViMzhiODNkNyIsImlhdCI6MTc0ODU1OTAxOSwiZXhwIjoxNzQ4NjQ1NDE5fQ.QNjkGOF_qMbvtkawREJcswSZ7Iyp5TWgZ2I7Vb5H--w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"amount\":50,\n \"receiverId\":\"65775040-23b2-4cbc-9933-d10a911b3d62\",\n \"senderId\":\"7df5bc33-2f7d-400c-8df3-ce9eb38b83d7\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/transfer",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"transfer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all transfer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkZjViYzMzLTJmN2QtNDAwYy04ZGYzLWNlOWViMzhiODNkNyIsImlhdCI6MTc0ODU1OTAxOSwiZXhwIjoxNzQ4NjQ1NDE5fQ.QNjkGOF_qMbvtkawREJcswSZ7Iyp5TWgZ2I7Vb5H--w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/transfer",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"transfer"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "shin",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "sort_dir",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"<h1>Shinn</h1>\",\n    \"email\":\"test@gmail.com\",\n    \"password\":\"Pokemon@32\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/users",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"test@gmail.com\",\n    \"password\":\"Pokemon@32\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/login",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

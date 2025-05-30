@@ -1,8 +1,6 @@
 import request from "supertest";
 import app from "../app";
-import { PrismaClient } from "@/generated/prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "@/config/db";
 
 describe("POST /transfers", () => {
   it("should transfer success", async () => {

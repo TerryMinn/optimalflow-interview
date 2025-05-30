@@ -1,9 +1,7 @@
-import { PrismaClient } from "@/generated/prisma/client";
+import { prisma } from "@/config/db";
 import { BasePaginationQuery } from "@/types";
 import { hashPassword } from "@/util";
 import { UserType } from "@/validation/user.schema";
-
-const prisma = new PrismaClient();
 
 export const getUsers = async ({
   limit = 10,

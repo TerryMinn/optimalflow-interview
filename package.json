@@ -2,8 +2,12 @@
   "name": "optimalflow",
   "version": "1.0.0",
   "description": "interview task for optimalflow",
+  "main": "dist/server.js",
+  "_moduleAliases": {
+    "@": "dist"
+  },
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "node -r module-alias/register dist/server.js",
     "dev": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/server.ts",
     "build": "tsc",
     "test": "prisma db seed && cross-env NODE_ENV=test jest"
@@ -50,6 +54,7 @@
     "express-rate-limit": "^7.5.0",
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
+    "module-alias": "^2.2.3",
     "sanitize-html": "^2.17.0",
     "zod": "^3.25.36"
   }

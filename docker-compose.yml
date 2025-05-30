@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: terry
+      POSTGRES_PASSWORD: terry
+      POSTGRES_DB: interview-test
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  app:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://terry:terry@db:5432/interview-test
+      PORT: 3000
+      SALT_ROUNDS: 10
+      JWT_SECRET: k/wmDMeYTee+g8eMUfYOydvdSo8bS4dY07Kk1YXNyTQ
+      ORIGIN: http://localhost:3000/
+      SEED_EMAIL: seed@test.com
+      SEED_PASSWORD: password
+      SEED_NAME: Seed
+      SEED_EMAIL_S: seed2@test.com
+      SEED_PASSWORD_S: password2
+      SEED_NAME_S: Seed2
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: sh -c "npx prisma migrate dev --name init && npx prisma generate && npx prisma migrate deploy && npx prisma db seed && npm install && npm run build && npm run start"
+    restart: unless-stopped
+
+volumes:
+  pgdata:

@@ -1,8 +1,6 @@
-import { PrismaClient } from "@/generated/prisma/client";
+import { prisma } from "@/config/db";
 import { BasePaginationQuery } from "@/types";
 import { HttpError } from "@/util/error-handler";
-
-const prisma = new PrismaClient();
 
 export const transferCreate = async (
   amount: number,
