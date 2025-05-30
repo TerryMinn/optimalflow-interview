@@ -17,8 +17,6 @@ This is a backend interview task for **OptimalFlow**, built using **Node.js**, *
 - Modular codebase with separation of concerns
 - Unit/integration tests using Jest and Supertest
 
----
-
 ## 🚀 Getting Started
 
 ### 1. Clone the repo
