@@ -10,7 +10,8 @@
     "start": "node -r module-alias/register dist/server.js",
     "dev": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/server.ts",
     "build": "tsc",
-    "test": "prisma db seed && cross-env NODE_ENV=test jest"
+    "test": "prisma db seed && cross-env NODE_ENV=test jest",
+    "seed": "prisma db seed"
   },
   "repository": {
     "type": "git",
