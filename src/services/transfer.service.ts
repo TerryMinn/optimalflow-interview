@@ -31,7 +31,7 @@ export const transferCreate = async (
     await tx.user.update({
       where: { id: senderId },
       data: {
-        balance: { decrement: amount },
+        balance: { decrement: Number(amount) || 0 },
       },
     });
 
@@ -39,13 +39,13 @@ export const transferCreate = async (
     await tx.user.update({
       where: { id: receiverId },
       data: {
-        balance: { increment: amount },
+        balance: { increment: Number(amount) || 0 },
       },
     });
 
     await tx.transfer.create({
       data: {
-        amount,
+        amount: Number(amount),
         fromUserId: senderId,
         toUserId: receiverId,
       },
