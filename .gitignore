@@ -1,6 +1,25 @@
+# Node modules
 node_modules/
+
+# Build output
 dist/
-# Keep environment variables out of version control
+
+# Environment variables
 .env
 
-/src/generated/prisma
+# Prisma generated client (if you're re-generating this during build)
+src/generated/prisma/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
