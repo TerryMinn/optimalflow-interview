@@ -27,7 +27,7 @@ describe("POST /users", () => {
 
 describe("POST /login", () => {
   beforeEach(async () => {
-    // resetDatabase();
+    resetDatabase();
     execSync("npx prisma db seed", { stdio: "inherit" });
   });
   it("should login success", async () => {
@@ -37,5 +37,33 @@ describe("POST /login", () => {
     });
 
     expect(loginRes.status).toBe(200);
+  });
+
+  it("should login fail", async () => {
+    const loginRes = await request(app).post("/api/v1/login").send({
+      email: process.env.SEED_EMAIL,
+      password: "wrongPassword",
+    });
+
+    expect(loginRes.status).toBe(400);
+  });
+});
+
+describe("GET /users", () => {
+  beforeEach(async () => {
+    execSync("npx prisma db seed", { stdio: "inherit" });
+  });
+
+  it("should get all users", async () => {
+    const loginRes = await request(app).post("/api/v1/login").send({
+      email: process.env.SEED_EMAIL,
+      password: process.env.SEED_PASSWORD,
+    });
+
+    const res = await request(app)
+      .get("/api/v1/users")
+      .set("Authorization", `Bearer ${loginRes.body.token}`);
+
+    expect(res.status).toBe(200);
   });
 });
