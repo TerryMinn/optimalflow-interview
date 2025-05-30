@@ -11,5 +11,9 @@ declare namespace NodeJS {
     JWT_SECRET: string;
 
     ORIGIN: string;
+
+    SEED_EMAIL: string;
+    SEED_PASSWORD: string;
+    SEED_NAME: string;
   }
 }
