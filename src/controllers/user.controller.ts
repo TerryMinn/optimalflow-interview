@@ -16,14 +16,14 @@ export const getAllUser = async (
   next: NextFunction
 ) => {
   try {
-    const { count, users } = await getUsers(req.query);
+    const {} = await getUsers(req.query);
 
     res.status(200).json({
       success: true,
       message: "Success",
-      data: users,
+      data: null,
       meta: {
-        total: count,
+        total: 0,
         page: Number(req.query.page) || 1,
         limit: Number(req.query.limit) || 10,
         sort_by: req.query.sort_by || "createdAt",
@@ -65,29 +65,25 @@ export const LoginUser = async (
   next: NextFunction
 ) => {
   try {
-    const userFinder = await getUserByEmail(req.body.email);
-    if (!userFinder) {
-      throw new HttpError(400, "User not found");
-    }
-
-    const comparePassword = compareSync(req.body.password, userFinder.password);
-
-    if (!comparePassword) {
-      throw new HttpError(400, "Invalid credentials");
-    }
-
-    const token = await generateJWToken(userFinder.id);
-
-    res.status(200).json({
-      success: true,
-      message: "User logged in successfully",
-      data: {
-        name: userFinder.name,
-        email: userFinder.email,
-        id: userFinder.id,
-      },
-      token,
-    });
+    // const userFinder = await getUserByEmail(req.body.email);
+    // if (!userFinder) {
+    //   throw new HttpError(400, "User not found");
+    // }
+    // const comparePassword = compareSync(req.body.password, "");
+    // if (!comparePassword) {
+    //   throw new HttpError(400, "Invalid credentials");
+    // }
+    // // const token = await generateJWToken(userFinder.id);
+    // res.status(200).json({
+    //   success: true,
+    //   message: "User logged in successfully",
+    //   data: {
+    //     name: userFinder.name,
+    //     email: userFinder.email,
+    //     id: userFinder.id,
+    //   },
+    //   token,
+    // });
   } catch (error) {
     next(error);
   }
@@ -99,16 +95,15 @@ export const getUser = async (
   next: NextFunction
 ) => {
   try {
-    const user = await getUserById(req.params.id);
-
-    if (!user) {
-      throw new HttpError(400, "User not found");
-    }
-    res.status(200).json({
-      success: true,
-      message: "Success",
-      data: user,
-    });
+    // const user = await getUserById(req.params.id);
+    // if (!user) {
+    //   throw new HttpError(400, "User not found");
+    // }
+    // res.status(200).json({
+    //   success: true,
+    //   message: "Success",
+    //   data: user,
+    // });
   } catch (error) {
     next(error);
   }
@@ -120,23 +115,22 @@ export const getTransferDataByUserId = async (
   next: NextFunction
 ) => {
   try {
-    const { count, transfers } = await getUserTransferData(
-      req.params.id,
-      req.query
-    );
-
-    res.status(200).json({
-      success: true,
-      message: "Success",
-      data: transfers,
-      meta: {
-        total: count,
-        page: Number(req.query.page) || 1,
-        limit: Number(req.query.limit) || 10,
-        sort_by: req.query.sort_by || "createdAt",
-        sort_dir: req.query.sort_dir || "desc",
-      },
-    });
+    // const { count, transfers } = await getUserTransferData(
+    //   req.params.id,
+    //   req.query
+    // );
+    // res.status(200).json({
+    //   success: true,
+    //   message: "Success",
+    //   data: transfers,
+    //   meta: {
+    //     total: count,
+    //     page: Number(req.query.page) || 1,
+    //     limit: Number(req.query.limit) || 10,
+    //     sort_by: req.query.sort_by || "createdAt",
+    //     sort_dir: req.query.sort_dir || "desc",
+    //   },
+    // });
   } catch (err) {
     next(err);
   }

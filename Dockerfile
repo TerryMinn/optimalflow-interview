@@ -1,17 +1,23 @@
-FROM node:20-alpine
+# Use an official Node.js runtime as a parent image
+FROM node:18-alpine
 
-RUN apk add --no-cache openssl
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-WORKDIR /app
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
 
-COPY package.json package-lock.json ./
-
+# Install project dependencies
 RUN npm install
 
+# Copy the rest of the application's source code from your host to your image filesystem.
 COPY . .
 
-RUN npx prisma generate
-
+# Build typescript
 RUN npm run build
 
-CMD ["npm", "run", "start"]
+# Your app binds to port 3000 so you'll use the EXPOSE instruction to have it mapped by the docker daemon
+EXPOSE 3000
+
+# Define the command to run your app using CMD
+CMD [ "npm", "start" ]

@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from "express";
-import { TransferRouter, UserRouter } from "./routes";
+import { UserRouter } from "./routes";
 import { HttpError } from "./util/error-handler";
 import { rateLimit } from "express-rate-limit";
 import helmet from "helmet";
@@ -7,7 +7,7 @@ import cors from "cors";
 const app = express();
 
 // For JSON parser
-app.use(express.json());
+app.use(express.json({ limit: "10mb" }));
 // For form data parser
 app.use(express.urlencoded({ extended: true }));
 // CORS
@@ -59,8 +59,7 @@ app.use(
 );
 
 // Routes
-app.use("/api/v1", UserRouter);
-app.use("/api/v1", TransferRouter);
+app.use("/api/v2", UserRouter);
 
 // fallback route for any other route that is not defined
 app.get(/(.*)/, (req, res) => {

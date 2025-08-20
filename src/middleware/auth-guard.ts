@@ -28,10 +28,10 @@ export default async function authGuard(
     }
 
     const user = await getUserById(data.id);
-    if (!user) {
-      return next(new HttpError(401, "User not found"));
-    }
-    req.user = user;
+    // if (!user) {
+    //   return next(new HttpError(401, "User not found"));
+    // }
+    // req.user = user;
     next();
   } catch (err) {
     if (err instanceof Error) {
